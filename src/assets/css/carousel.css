@@ -1,0 +1,22 @@
+.carousel-slider {
+    display: block;
+    width: 100%;
+    max-width: 310px;
+    overflow: hidden;
+}
+
+.carousel-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    width: 1550px;
+}
+
+.carousel-image {
+    image-rendering: -webkit-optimize-contrast;
+    width: 100%;
+    max-width: 300px;
+    margin: 5px;
+}
