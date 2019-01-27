@@ -16,7 +16,7 @@ export const PrevBtn = ({onClick}) => <button onClick={(e) => onClick(e)}
 export const NextArrow = ({onClick}) => <React.Fragment>
         <button onClick={(e) => onClick(e)} 
             className="carousel-arrow next">
-            <Arrow width="24" height="auto" alt="Next"color="#2b73a1" />
+            <Arrow width="24" alt="Next"color="#2b73a1" />
         </button>
         <div className="carousel-arrow-conatiner next"></div>
     </React.Fragment>
@@ -24,7 +24,7 @@ export const NextArrow = ({onClick}) => <React.Fragment>
 export const PrevArrow = ({onClick}) => <React.Fragment>
     <button onClick={(e) => onClick(e)} 
         className="carousel-arrow prev">
-        <Arrow width="24" height="auto" transform='rotate(180)' color="#2b73a1" />
+        <Arrow width="24"  transform='rotate(180)' color="#2b73a1" />
     </button> 
     <div className="carousel-arrow-conatiner prev"></div>
 </React.Fragment>
