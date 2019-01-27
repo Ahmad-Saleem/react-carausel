@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Ropa+Sans');
-
 .carousel-slider {
     display: block;
     position: relative;
@@ -9,13 +7,14 @@
     font-family: 'Ropa Sans', sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #ffffff;
 }
 
 .carousel-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: flex-start;
+    align-items: baseline;
     overflow-x: hidden;
     margin: 0;
     padding: 0;
@@ -39,6 +38,7 @@
     width: 100%;
     padding: 0;
     margin: 0;  /* @PARAM */
+    object-fit: cover;
 }
 
 .carousel-image {
@@ -82,7 +82,7 @@
     width: 45px;
     background-color: #ffffff;
     position: absolute;
-    top: calc(30% - 45px);
+    top: calc(50% - 45px);
     margin: 0;
     opacity: 0.5;
 }
@@ -104,7 +104,7 @@
     width: 45px;
     background-color: transparent;
     position: absolute;
-    top: calc(30% - 45px);
+    top: calc(50% - 45px);
     border: 1px solid transparent;
     outline: none;
     box-shadow: none;
