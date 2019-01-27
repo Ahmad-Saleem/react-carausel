@@ -4,26 +4,51 @@
     display: block;
     position: relative;
     width: 100%;
-    max-width: 300px;
+    /* max-width: 300px; @PARAM */
     overflow: hidden;
     font-family: 'Ropa Sans', sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 .carousel-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     overflow-x: hidden;
-    width: 1500px;
+    margin: 0;
+    padding: 0;
+    /* width: 1500px;  @PARAM */
+}
+
+.carousel-container.desktop > div:not(:first-child):not(:last-child){
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.carousel-container.desktop > div:first-child{
+    margin-right: 5px;
+}
+
+.carousel-container.desktop > div:last-child{
+    margin-left: 5px;
+}
+
+.carousel-slide {
+    width: 100%;
+    padding: 0;
+    margin: 0;  /* @PARAM */
 }
 
 .carousel-image {
     image-rendering: -webkit-optimize-contrast;
     width: 100%;
-    max-width: 300px;
 }
 
+.carousel-slide h1 {
+    padding: 5px 10px;
+}
 .carousel-button {
     background-color: #2b73a1;
     color: #ffffff;
@@ -35,6 +60,7 @@
     font-family: 'Ropa Sans', sans-serif;
     font-size: 22px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .carousel-button:active{
@@ -87,6 +113,7 @@
     display: flex;
     align-items: center;
     z-index: 10;
+    cursor: pointer;
 }
 
 
@@ -111,4 +138,9 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+.carousel-slider h1 {
+    color: #2b73a1;
+    font-size: 4vh;
 }
