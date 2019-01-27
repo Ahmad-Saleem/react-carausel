@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Image from "./Image";
+import {NextBtn, PrevBtn, NextArrow, PrevArrow } from './NavBtn';
 
 
 
@@ -51,7 +52,7 @@ export default class Slider extends Component {
             // do nothing
         }else {
             currentIndex++;
-            translateValue = translateValue - w - 10;
+            translateValue = translateValue - w;
         }
         this.setState({
             currentIndex,
@@ -67,7 +68,7 @@ export default class Slider extends Component {
             translateValue = 0;
         }else {
             currentIndex--;
-            translateValue = translateValue + w + 10;
+            translateValue = translateValue + w ;
         }
         this.setState({
             currentIndex,
@@ -97,9 +98,14 @@ export default class Slider extends Component {
 
                     { this.state.images.map( (url, i) => <Image src={url} id={`carousel-image-${i}`} 
                         className="carousel-image"  key={i} />)}
+                    
                 </div>
-                <button onClick={this._prev.bind(this)}> Prev </button>
-                 <button onClick={this._next.bind(this)}> Next </button>
+                <NextArrow  onClick={this._next}/>
+                <PrevArrow  onClick={this._prev}/>
+                <div className="carosel-nav-desktop">
+                    <PrevBtn onClick={this._prev} />
+                    <NextBtn onClick={this._next} />
+                </div>
             </div>
         );
     }

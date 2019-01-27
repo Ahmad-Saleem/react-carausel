@@ -1,7 +1,8 @@
 .carousel-slider {
     display: block;
+    position: relative;
     width: 100%;
-    max-width: 310px;
+    max-width: 300px;
     overflow: hidden;
 }
 
@@ -11,12 +12,94 @@
     justify-content: center;
     align-items: center;
     overflow-x: hidden;
-    width: 1550px;
+    width: 1500px;
 }
 
 .carousel-image {
     image-rendering: -webkit-optimize-contrast;
     width: 100%;
     max-width: 300px;
+}
+
+.carousel-button {
+    background-color: #2b73a1;
+    color: #ffffff;
+    border: 1px solid #2b73a1;
+    outline: none;
+    box-shadow: none;
+    padding: 5px;
     margin: 5px;
+   
+}
+
+.carousel-button.next {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.carousel-button.prev {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.carousel-arrow-conatiner {
+    height: 90px;
+    width: 45px;
+    background-color: #ffffff;
+    position: absolute;
+    top: calc(50% - 45px);
+    margin: 0;
+    opacity: 0.5;
+}
+
+.carousel-arrow-conatiner.next {
+    border-bottom-left-radius:90px;
+    border-top-left-radius: 90px;
+    right: 0;
+}
+
+.carousel-arrow-conatiner.prev {
+    border-bottom-right-radius: 90px;
+    border-top-right-radius: 90px;
+    left: 0;
+}
+
+.carousel-arrow {
+    height: 90px;
+    width: 45px;
+    background-color: transparent;
+    position: absolute;
+    top: calc(50% - 45px);
+    border: 1px solid transparent;
+    outline: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+}
+
+
+.carousel-arrow.next {
+    border-bottom-left-radius:90px;
+    border-top-left-radius: 90px;
+    right: 0;
+    justify-content: flex-end;
+}
+
+.carousel-arrow.prev {
+    border-bottom-right-radius: 90px;
+    border-top-right-radius: 90px;
+    left: 0;
+    justify-content: flex-start;
+}
+
+
+
+.carosel-nav-desktop{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
