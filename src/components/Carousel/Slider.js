@@ -159,7 +159,7 @@ export default class Slider extends Component {
     }
 
     _goToCenter = () => {
-        let { imagesCount, currentIndex, translateValue, imagesCountPerSlide, slideWidth, slideMargin } = this.state; 
+        let { imagesCount, currentIndex, translateValue, imagesCountPerSlide, slideWidth } = this.state; 
         if(currentIndex + imagesCountPerSlide >= imagesCount ){
             // do nothing
         }else {
