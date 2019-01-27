@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Ropa+Sans');
+
 .carousel-slider {
     display: block;
     position: relative;
     width: 100%;
     max-width: 300px;
     overflow: hidden;
+    font-family: 'Ropa Sans', sans-serif;
 }
 
 .carousel-container {
@@ -27,19 +30,25 @@
     border: 1px solid #2b73a1;
     outline: none;
     box-shadow: none;
-    padding: 5px;
+    padding: 6px 26px;
     margin: 5px;
-   
+    font-family: 'Ropa Sans', sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.carousel-button:active{
+    box-shadow:0 2px 8px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
 
 .carousel-button.next {
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 .carousel-button.prev {
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
 }
 
 .carousel-arrow-conatiner {
