@@ -83,35 +83,29 @@ export default class Slider extends Component {
 
     _next = () => {
         let { imagesCount, currentIndex, translateValue, imagesCountPerSlide, slideWidth } = this.state; 
-        console.log(currentIndex)
-        console.log(imagesCount - (currentIndex ))
-        if(imagesCount - currentIndex  < imagesCountPerSlide){
-            currentIndex = imagesCountPerSlide - (imagesCountPerSlide - (imagesCount%imagesCountPerSlide));
+        
+        if(currentIndex + imagesCountPerSlide >= imagesCount ){
+            // do nothing
         }else {
             currentIndex += imagesCountPerSlide;
-            //console.log(currentIndex,imagesCountPerSlide - (imagesCountPerSlide - (imagesCount%imagesCountPerSlide)))
-            //currentIndex += imagesCountPerSlide - (imagesCountPerSlide - (imagesCount%imagesCountPerSlide));
-            ////translateValue = translateValue - slideWidth;
-           //+ (slideWidth/imagesCountPerSlide) * (imagesCountPerSlide - (imagesCount%imagesCountPerSlide))
+            translateValue = translateValue - slideWidth;
+            this.setState({
+                currentIndex,
+                translateValue,
+              });
         }
-        console.log(currentIndex)
-        this.setState({
-            currentIndex,
-            // translateValue,
-          });
      
     }
 
     _prev = () => {
-        let { currentIndex, translateValue, imagesCountPerSlide, slideWidth, imagesCount } = this.state; 
+        let { currentIndex, translateValue, imagesCountPerSlide, slideWidth } = this.state; 
         if(currentIndex <= 0){
             currentIndex = 0;
             translateValue = 0;
         }else {
-            currentIndex-=imagesCountPerSlide + (imagesCountPerSlide - (imagesCount%imagesCountPerSlide));
-            translateValue = translateValue + slideWidth - (slideWidth/imagesCountPerSlide) * (imagesCountPerSlide - (imagesCount%imagesCountPerSlide));
+            currentIndex-=imagesCountPerSlide;
+            translateValue = translateValue + slideWidth ;
         }
-        console.log(currentIndex, translateValue)
         this.setState({
             currentIndex,
             translateValue,
