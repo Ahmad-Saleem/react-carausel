@@ -82,7 +82,7 @@
     width: 45px;
     background-color: #ffffff;
     position: absolute;
-    top: calc(50% - 45px);
+    top: calc(30% - 45px);
     margin: 0;
     opacity: 0.5;
 }
@@ -104,7 +104,7 @@
     width: 45px;
     background-color: transparent;
     position: absolute;
-    top: calc(50% - 45px);
+    top: calc(30% - 45px);
     border: 1px solid transparent;
     outline: none;
     box-shadow: none;

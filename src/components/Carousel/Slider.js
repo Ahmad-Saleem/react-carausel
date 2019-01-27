@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Slide from './Slide';
 import Image from "./Image";
 import {NextBtn, PrevBtn, NextArrow, PrevArrow } from './NavBtn';
 
 
+const API_URL = "https://pixabay.com/api/?key=11414444-1602fd7be308abaef8e394c73&q=london&image_type=photo&pretty=true";
 
 export default class Slider extends Component {
 
@@ -25,8 +27,20 @@ export default class Slider extends Component {
     }
 
     componentDidMount = () => {
+        let that = this;
+        axios.get(API_URL)
+        .then((response) => {
+            if(response.data.hits){
+            const images = response.data.hits.filter((hit,i)=>i<12).map(hit => hit.largeImageURL);
+            that.setState({images});
+            that._resize();
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        })
         window.addEventListener('resize', this._resize);
-        this._resize();
+        
     }
 
     componentWillUnmount() {
@@ -39,7 +53,9 @@ export default class Slider extends Component {
      the default value is one slide per view.
     */
     _resize = () => {
-        const { setting:  {imagesCountPerSlide, responsive, slideMargin}, images} = this.props; 
+        const { setting:  {imagesCountPerSlide, responsive, slideMargin}} = this.props; 
+        const { images } = this.state;
+
         const slideWidth = window.innerWidth;
 
         let slidesCount = imagesCountPerSlide || 1;
@@ -61,6 +77,8 @@ export default class Slider extends Component {
             slideWidth,
             imagesCountPerSlide: slidesCount,
             slideMargin,
+            currentIndex: 0,
+            translateValue: 0,
         });
     }
 
@@ -82,13 +100,14 @@ export default class Slider extends Component {
 
 
     _next = () => {
-        let { imagesCount, currentIndex, translateValue, imagesCountPerSlide, slideWidth } = this.state; 
+        let { imagesCount, currentIndex, translateValue, imagesCountPerSlide, slideWidth, slideMargin } = this.state; 
+        const margin = imagesCountPerSlide > 1 ? slideMargin*imagesCountPerSlide : 0;
         
         if(currentIndex + imagesCountPerSlide >= imagesCount ){
             // do nothing
         }else {
             currentIndex += imagesCountPerSlide;
-            translateValue = translateValue - slideWidth;
+            translateValue = translateValue - slideWidth - margin;
             this.setState({
                 currentIndex,
                 translateValue,
@@ -98,13 +117,15 @@ export default class Slider extends Component {
     }
 
     _prev = () => {
-        let { currentIndex, translateValue, imagesCountPerSlide, slideWidth } = this.state; 
+        let { currentIndex, translateValue, imagesCountPerSlide, slideWidth, slideMargin } = this.state; 
+        const margin = imagesCountPerSlide > 1 ? slideMargin*imagesCountPerSlide : 0;
+
         if(currentIndex <= 0){
             currentIndex = 0;
             translateValue = 0;
         }else {
             currentIndex-=imagesCountPerSlide;
-            translateValue = translateValue + slideWidth ;
+            translateValue = translateValue + slideWidth + margin;
         }
         this.setState({
             currentIndex,
@@ -130,6 +151,7 @@ export default class Slider extends Component {
 
     render(){
         const {slideWidth, translateValue, images, imagesCountPerSlide} = this.state;
+      
         return(
             <div className="carousel-slider" style={{maxWidth: `${slideWidth}px`}}>
                 <div className={`carousel-container ${imagesCountPerSlide > 1 ? 'desktop' : ''}`}
