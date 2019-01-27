@@ -26,19 +26,26 @@ export default class Slider extends Component {
         this._resize = this._resize.bind(this);
     }
 
+    /**
+     * get images from api and set result to state,
+     * apply resize function after get images
+     */
     componentDidMount = () => {
         let that = this;
-        axios.get(API_URL)
-        .then((response) => {
+        axios.get(API_URL).then((response) => {
             if(response.data.hits){
-            const images = response.data.hits.filter((hit,i)=>i<12).map(hit => hit.largeImageURL);
+            const images = response.data.hits
+            .filter((hit,i)=>i<12)
+            .map(hit => hit.largeImageURL);
+
             that.setState({images});
             that._resize();
             }
         })
         .catch((error) => {
             console.log(error);
-        })
+        });
+
         window.addEventListener('resize', this._resize);
         
     }
@@ -57,9 +64,10 @@ export default class Slider extends Component {
         const { images } = this.state;
 
         const slideWidth = window.innerWidth;
-
+        // default is one
         let slidesCount = imagesCountPerSlide || 1;
 
+        // process responsivity from setting props.
         if(responsive.length > 0){
             const responsiveSorted = responsive.sort(
                 (a,b) => (a.breakPoint > b.breakPoint) ? 1 : ((b.breakPoint < a.breakPoint) ? -1 : 0));
@@ -82,12 +90,20 @@ export default class Slider extends Component {
         });
     }
 
+    /**
+     * handle start touching to swipe slide
+     */
     _swipStart = (e) => {
         const obj = e.changedTouches[0];
         const { pageX } = obj;
         this.setState({swipStart: pageX});
     }
 
+    /**
+     * handle end of touching to swipe slide,
+     * determine the direction, by calc the distance,
+     * between first touch point and end touch point 
+     */
     _swipEnd = (e) => {
         const { pageX }  = e.changedTouches[0];
         const { swipStart } = this.state;
@@ -99,6 +115,9 @@ export default class Slider extends Component {
     }
 
 
+    /**
+     * handle next slide event
+     */
     _next = () => {
         let { imagesCount, currentIndex, translateValue, imagesCountPerSlide, slideWidth, slideMargin } = this.state; 
         const margin = imagesCountPerSlide > 1 ? slideMargin*imagesCountPerSlide : 0;
@@ -116,6 +135,9 @@ export default class Slider extends Component {
      
     }
 
+    /**
+     * handle prev slide event
+     */
     _prev = () => {
         let { currentIndex, translateValue, imagesCountPerSlide, slideWidth, slideMargin } = this.state; 
         const margin = imagesCountPerSlide > 1 ? slideMargin*imagesCountPerSlide : 0;
@@ -133,6 +155,9 @@ export default class Slider extends Component {
           });
     }
 
+    /**
+     * calc width of slider container
+     */
     _getContainerWidth = () => {
         const {slideWidth, imagesCount, imagesCountPerSlide, slideMargin} = this.state;
         const containerWidth  = imagesCountPerSlide > 1 ?
@@ -141,6 +166,12 @@ export default class Slider extends Component {
         return containerWidth;
     }
 
+    /**
+     * 
+     * @param {*} nextProps 
+     * @param {*} nextState 
+     * prevent re-rendering when start touching to swipe
+     */
     shouldComponentUpdate(nextProps, nextState) {
         if(this.state.swipStart !== nextState.swipStart){
             return false;
