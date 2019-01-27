@@ -88,6 +88,9 @@ export default class Slider extends Component {
             currentIndex: 0,
             translateValue: 0,
         });
+        if(slidesCount === 1){
+            this._goToCenter();
+        }
     }
 
     /**
@@ -153,6 +156,21 @@ export default class Slider extends Component {
             currentIndex,
             translateValue,
           });
+    }
+
+    _goToCenter = () => {
+        let { imagesCount, currentIndex, translateValue, imagesCountPerSlide, slideWidth, slideMargin } = this.state; 
+        if(currentIndex + imagesCountPerSlide >= imagesCount ){
+            // do nothing
+        }else {
+            currentIndex = Math.floor(imagesCount/2);
+            translateValue = translateValue - ((slideWidth) * Math.floor(imagesCount/2));
+            this.setState({
+                currentIndex,
+                translateValue,
+              });
+        }
+     
     }
 
     /**
